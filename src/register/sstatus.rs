@@ -94,6 +94,11 @@ impl Sstatus {
     pub fn sd(&self) -> bool {
         self.bits.get_bit(size_of::<usize>() * 8 - 1)
     }
+
+    #[inline]
+    pub fn set_spp(&mut self, val: SPP) {
+        self.bits.set_bit(8, val == SPP::Supervisor);
+    }
 }
 
 read_csr_as!(Sstatus, 0x100);
